@@ -18,7 +18,7 @@ contract ReputyScript is Test, Script {
     uint256 constant USER_NUMBER = 10;
     uint256 constant MAX_RATING = 100;
 
-    function setUp() public {
+    function setUp() public virtual {
         users = new address[](USER_NUMBER);
 
         users[0] = address(0x1e2Ce012b27d0c0d3e717e943EF6e62717CEc4ea);
@@ -37,11 +37,11 @@ contract ReputyScript is Test, Script {
         ReputyRegistry registry,
         ReputyApp.InitParams memory params
     ) internal {
+        vm.broadcast();
         ReputyApp app = registry.registerApp(params);
 
         for (uint256 i = 0; i < users.length; i++) {
             vm.broadcast();
-
             app.setRating(
                 users[i],
                 uint256(uint160(users[i])) % MAX_RATING,
@@ -52,10 +52,10 @@ contract ReputyScript is Test, Script {
         console.log("Deployed app", params.name, address(app));
     }
 
-    function run() public {
+    function run() public virtual {
         vm.broadcast();
-
         ReputyRegistry registry = new ReputyRegistry();
+
         console.log("Deployed registry:", address(registry));
 
         address[] memory admins = new address[](USER_NUMBER + 1);
@@ -76,5 +76,25 @@ contract ReputyScript is Test, Script {
         );
 
         vm.stopBroadcast();
+    }
+}
+
+contract ReputyUpdateScript is ReputyScript {
+    function setUp() public override {
+        super.setUp();
+    }
+
+    function run() public override {
+        ReputyApp app = ReputyApp(vm.envAddress("REPUTY_APP_ADDRESS"));
+        uint256 ratingBefore = app.userRating(users[1]);
+
+        vm.broadcast();
+        app.addRating(users[1], 7, "");
+        vm.stopBroadcast();
+
+        uint256 ratingAfter = app.userRating(users[1]);
+
+        console.log("Rating before", ratingBefore);
+        console.log("Rating after", ratingAfter);
     }
 }

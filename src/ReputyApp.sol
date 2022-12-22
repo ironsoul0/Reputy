@@ -96,7 +96,7 @@ contract ReputyApp is ERC721 {
         uint256 delta,
         string memory action
     ) public isAdmin {
-        userRating[user] += Math.min(userRating[user] + delta, MAX_RATING);
+        userRating[user] = Math.min(userRating[user] + delta, MAX_RATING);
 
         _handleRatingUpdate(user);
 
@@ -109,7 +109,7 @@ contract ReputyApp is ERC721 {
         string memory action
     ) public isAdmin {
         delta = Math.min(delta, userRating[user]);
-        userRating[user] += Math.max(userRating[user] - delta, MIN_RATING);
+        userRating[user] = Math.max(userRating[user] - delta, MIN_RATING);
 
         _handleRatingUpdate(user);
 
