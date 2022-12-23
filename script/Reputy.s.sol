@@ -9,12 +9,7 @@ import "../src/ReputyRegistry.sol";
 import "../src/ReputyApp.sol";
 
 contract ReputyScript is Test, Script {
-    struct MockUser {
-        address user;
-        uint256 rating;
-    }
-
-    address[] users;
+    address[] internal users;
     uint256 constant USER_NUMBER = 10;
     uint256 constant MAX_RATING = 100;
 
@@ -31,6 +26,18 @@ contract ReputyScript is Test, Script {
         users[7] = address(0x6887246668a3b87F54DeB3b94Ba47a6f63F32985);
         users[8] = address(0x5E4e65926BA27467555EB562121fac00D24E9dD2);
         users[9] = address(0x50a0387F6355E89dE1C988990C334E0FFC0a19A4);
+    }
+
+    function run() public virtual {
+        vm.broadcast();
+        ReputyRegistry registry = new ReputyRegistry();
+        console.log("Deployed registry:", address(registry));
+    }
+}
+
+contract ReputyDeployAppsScript is ReputyScript {
+    function setUp() public override {
+        super.setUp();
     }
 
     function _deployApp(
@@ -52,11 +59,10 @@ contract ReputyScript is Test, Script {
         console.log("Deployed app", params.name, address(app));
     }
 
-    function run() public virtual {
-        vm.broadcast();
-        ReputyRegistry registry = new ReputyRegistry();
-
-        console.log("Deployed registry:", address(registry));
+    function run() public override {
+        ReputyRegistry registry = ReputyRegistry(
+            vm.envAddress("REPUTY_REGISTRY_ADDRESS")
+        );
 
         address[] memory admins = new address[](USER_NUMBER + 1);
         for (uint256 i = 0; i < USER_NUMBER; i++) {
@@ -67,15 +73,14 @@ contract ReputyScript is Test, Script {
         _deployApp(
             registry,
             ReputyApp.InitParams({
-                name: "Uniswap",
-                symbol: "UNI",
+                name: "Bitgaming",
+                fullName: "Bitgaming | Reputy",
+                symbol: "BIT-RPT",
                 logoURI: "N/A",
-                description: "Uniswap test project",
+                description: "Bitgaming rating powered by Reputy",
                 admins: admins
             })
         );
-
-        vm.stopBroadcast();
     }
 }
 

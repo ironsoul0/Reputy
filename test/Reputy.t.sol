@@ -17,6 +17,7 @@ contract ReputyTest is Test {
 
         ReputyApp.InitParams memory params = ReputyApp.InitParams({
             name: "Uniswap",
+            fullName: "Uniswap | Reputy",
             symbol: "UNI",
             logoURI: "N/A",
             description: "Uniswap test project",

@@ -14,6 +14,7 @@ error NonTransferrableNFT();
 contract ReputyApp is ERC721 {
     struct InitParams {
         string name;
+        string fullName;
         string symbol;
         string logoURI;
         string description;
@@ -68,7 +69,9 @@ contract ReputyApp is ERC721 {
         _;
     }
 
-    constructor(InitParams memory params) ERC721(params.name, params.symbol) {
+    constructor(InitParams memory params)
+        ERC721(params.fullName, params.symbol)
+    {
         appConfig = params;
     }
 
