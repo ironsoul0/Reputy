@@ -19,4 +19,8 @@ contract ReputyRegistry {
 
         return app;
     }
+
+    function getApps() external view returns (ReputyApp[] memory) {
+        return apps;
+    }
 }

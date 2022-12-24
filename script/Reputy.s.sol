@@ -46,17 +46,18 @@ contract ReputyDeployAppsScript is ReputyScript {
     ) internal {
         vm.broadcast();
         ReputyApp app = registry.registerApp(params);
+        uint32 seed = uint32(bytes4(abi.encodePacked(params.name)));
 
         for (uint256 i = 0; i < users.length; i++) {
             vm.broadcast();
-            app.setRating(
+            app.addRating(
                 users[i],
-                uint256(uint160(users[i])) % MAX_RATING,
-                ""
+                (uint256(uint160(users[i])) + i * seed) % MAX_RATING,
+                "User interacted with a protocol"
             );
         }
 
-        console.log("Deployed app", params.name, address(app));
+        console.log("Deployed app with name", params.name, address(app));
     }
 
     function run() public override {
@@ -73,11 +74,77 @@ contract ReputyDeployAppsScript is ReputyScript {
         _deployApp(
             registry,
             ReputyApp.InitParams({
-                name: "Bitgaming",
-                fullName: "Bitgaming | Reputy",
+                name: "Bitgaming.me",
+                fullName: "Bitgaming.me | Reputy",
+                tag: "Games",
                 symbol: "BIT-RPT",
-                logoURI: "N/A",
-                description: "Bitgaming rating powered by Reputy",
+                logoURI: "https://ironsoul0.github.io/reputy/bitgaming.png",
+                description: "Next generation P2E game",
+                admins: admins
+            })
+        );
+
+        _deployApp(
+            registry,
+            ReputyApp.InitParams({
+                name: "Uniswap",
+                fullName: "Uniswap | Reputy",
+                tag: "Exchange",
+                symbol: "UNI-RPT",
+                logoURI: "https://ironsoul0.github.io/reputy/uniswap.jpeg",
+                description: "Crypto exchange platform",
+                admins: admins
+            })
+        );
+
+        _deployApp(
+            registry,
+            ReputyApp.InitParams({
+                name: "Mummy",
+                fullName: "Mummy | Reputy",
+                tag: "Games",
+                symbol: "MMY-RPT",
+                logoURI: "https://ironsoul0.github.io/reputy/mummy.png",
+                description: "The Next Gen Ancient World",
+                admins: admins
+            })
+        );
+
+        _deployApp(
+            registry,
+            ReputyApp.InitParams({
+                name: "Ultiverse",
+                fullName: "Ultiverse | Reputy",
+                tag: "Games",
+                symbol: "ULTI-RPT",
+                logoURI: "https://ironsoul0.github.io/reputy/multi.png",
+                description: "Connecting Web3 through a AAA Gaming metaverse",
+                admins: admins
+            })
+        );
+
+        _deployApp(
+            registry,
+            ReputyApp.InitParams({
+                name: "EX Sports",
+                fullName: "EX Sports | Reputy",
+                tag: "Sport",
+                symbol: "EXP-RPT",
+                logoURI: "https://ironsoul0.github.io/reputy/ex.png",
+                description: "EX Sport Starz - platform that allows sport fans to trade digital assets",
+                admins: admins
+            })
+        );
+
+        _deployApp(
+            registry,
+            ReputyApp.InitParams({
+                name: "NEO Fantasy",
+                fullName: "NEO Fantasy | Reputy",
+                tag: "Games",
+                symbol: "NEO-RPT",
+                logoURI: "https://ironsoul0.github.io/reputy/neo.png",
+                description: "Play With Courage & Benefit!",
                 admins: admins
             })
         );

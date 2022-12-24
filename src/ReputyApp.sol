@@ -15,6 +15,7 @@ contract ReputyApp is ERC721 {
     struct InitParams {
         string name;
         string fullName;
+        string tag;
         string symbol;
         string logoURI;
         string description;
@@ -39,18 +40,22 @@ contract ReputyApp is ERC721 {
     mapping(address => uint256) public userRating;
     address[] public uniqueUsers;
 
-    event RatingSet(address user, uint256 newRating, string action);
+    event RatingSet(
+        address indexed user,
+        uint256 indexed delta,
+        string indexed action
+    );
     event RatingAdd(
-        address user,
-        uint256 addRating,
+        address indexed user,
+        uint256 indexed delta,
         uint256 newRating,
-        string action
+        string indexed action
     );
     event RatingSub(
-        address user,
-        uint256 subRating,
+        address indexed user,
+        uint256 indexed delta,
         uint256 newRating,
-        string action
+        string indexed action
     );
 
     modifier isAdmin() {
