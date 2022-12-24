@@ -76,6 +76,7 @@ contract ReputyDeployAppsScript is ReputyScript {
             ReputyApp.InitParams({
                 name: "Bitgaming.me",
                 fullName: "Bitgaming.me | Reputy",
+                link: "https://bitgaming.me",
                 tag: "Games",
                 symbol: "BIT-RPT",
                 logoURI: "https://ironsoul0.github.io/reputy/bitgaming.png",
@@ -87,11 +88,12 @@ contract ReputyDeployAppsScript is ReputyScript {
         _deployApp(
             registry,
             ReputyApp.InitParams({
-                name: "Uniswap",
-                fullName: "Uniswap | Reputy",
+                name: "Panckakeswap",
+                fullName: "Pancakeswap | Reputy",
+                link: "https://pancakeswap.finance",
                 tag: "Exchange",
-                symbol: "UNI-RPT",
-                logoURI: "https://ironsoul0.github.io/reputy/uniswap.jpeg",
+                symbol: "PAN-RPT",
+                logoURI: "https://ironsoul0.github.io/reputy/pancake.jpeg",
                 description: "Crypto exchange platform",
                 admins: admins
             })
@@ -102,6 +104,7 @@ contract ReputyDeployAppsScript is ReputyScript {
             ReputyApp.InitParams({
                 name: "Mummy",
                 fullName: "Mummy | Reputy",
+                link: "https://mummy.io",
                 tag: "Games",
                 symbol: "MMY-RPT",
                 logoURI: "https://ironsoul0.github.io/reputy/mummy.png",
@@ -115,6 +118,7 @@ contract ReputyDeployAppsScript is ReputyScript {
             ReputyApp.InitParams({
                 name: "Ultiverse",
                 fullName: "Ultiverse | Reputy",
+                link: "https://www.ultiverse.io/",
                 tag: "Games",
                 symbol: "ULTI-RPT",
                 logoURI: "https://ironsoul0.github.io/reputy/multi.png",
@@ -128,6 +132,7 @@ contract ReputyDeployAppsScript is ReputyScript {
             ReputyApp.InitParams({
                 name: "EX Sports",
                 fullName: "EX Sports | Reputy",
+                link: "https://www.ex-sports.io",
                 tag: "Sport",
                 symbol: "EXP-RPT",
                 logoURI: "https://ironsoul0.github.io/reputy/ex.png",
@@ -141,6 +146,7 @@ contract ReputyDeployAppsScript is ReputyScript {
             ReputyApp.InitParams({
                 name: "NEO Fantasy",
                 fullName: "NEO Fantasy | Reputy",
+                link: "https://neofantasy.nextype.finance",
                 tag: "Games",
                 symbol: "NEO-RPT",
                 logoURI: "https://ironsoul0.github.io/reputy/neo.png",

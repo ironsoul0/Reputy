@@ -15,6 +15,7 @@ contract ReputyApp is ERC721 {
     struct InitParams {
         string name;
         string fullName;
+        string link;
         string tag;
         string symbol;
         string logoURI;
