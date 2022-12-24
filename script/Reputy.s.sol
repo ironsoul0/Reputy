@@ -88,8 +88,8 @@ contract ReputyDeployAppsScript is ReputyScript {
         _deployApp(
             registry,
             ReputyApp.InitParams({
-                name: "Panckakeswap",
-                fullName: "Pancakeswap | Reputy",
+                name: "PancakeSwap",
+                fullName: "PancakeSwap | Reputy",
                 link: "https://pancakeswap.finance",
                 tag: "Exchange",
                 symbol: "PAN-RPT",

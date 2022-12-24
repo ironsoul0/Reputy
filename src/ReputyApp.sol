@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "openzeppelin-contracts/token/ERC721/ERC721.sol";
+import "openzeppelin-contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "openzeppelin-contracts/utils/math/Math.sol";
 import "openzeppelin-contracts/utils/Counters.sol";
 
@@ -11,7 +11,7 @@ error AdminAccessRequired();
 error InvalidRatingUpdate();
 error NonTransferrableNFT();
 
-contract ReputyApp is ERC721 {
+contract ReputyApp is ERC721Enumerable {
     struct InitParams {
         string name;
         string fullName;
