@@ -71,7 +71,7 @@ contract ReputyDeployAppsScript is ReputyScript {
         }
         admins[USER_NUMBER] = address(msg.sender);
 
-        _deployApp(
+        /* _deployApp(
             registry,
             ReputyApp.InitParams({
                 name: "Bitgaming.me",
@@ -82,7 +82,7 @@ contract ReputyDeployAppsScript is ReputyScript {
                 description: "Next generation P2E game",
                 admins: admins
             })
-        );
+        ); */
 
         _deployApp(
             registry,
@@ -110,7 +110,7 @@ contract ReputyDeployAppsScript is ReputyScript {
             })
         );
 
-        _deployApp(
+        /* _deployApp(
             registry,
             ReputyApp.InitParams({
                 name: "Ultiverse",
@@ -147,7 +147,7 @@ contract ReputyDeployAppsScript is ReputyScript {
                 description: "Play With Courage & Benefit!",
                 admins: admins
             })
-        );
+        ); */
     }
 }
 
